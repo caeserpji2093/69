@@ -30,5 +30,11 @@ public class BoardDaoImpl implements BoardDao {
 		return null;
 	}
 	
+	@Override
+	public void updateReadCount(int num) throws Exception {
+		sqlSession.update("boardMapper.updateReadCount", num);
+	}
+	
+	
 
 }

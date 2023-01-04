@@ -23,5 +23,22 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardDto> getBoardList() throws Exception{
 		return boardDao.selectListBoard();
 	}
+	
+	@Override
+	public BoardDto getOneBoard(int num) throws Exception{
+		boardDao.updateReadCount(num);
+		return boardDao.selectOneBoard(num);
+	}
+	
+	@Override
+	public boolean modifyBoard(BoardDto boardDto) throws Exception{
+		boolean isUpdate = false;
+		if (boardDao.selectOneValidateUserCheck(boardDto) != null) {
+			boardDao.updateBoard(boardDto);
+			isUpdate = true;
+		}
+		
+		return isUpdate;
+	}
 
 }
